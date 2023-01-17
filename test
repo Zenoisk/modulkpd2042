@@ -1,0 +1,45 @@
+<?php  
+include("config.php");
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>My First Database</title>
+</head>
+<center>
+<body style="padding: 250px;" bgcolor="lightpink">
+	<form class="myform" action="input01.php" method="POST">Photography Club Member<br>
+	<label><br>Name :</br></label>
+	<input name="name" type="text" class="inputvalues" placeholder="Enter Member's Name" 
+	required/><br>
+
+	<label><br>Photography Mark :</br></label>
+		<input name="photo_marks" type="text" class="inputvalues" placeholder="Enter photo marks"
+		required/><br>
+		<input name="submit_btn" type="submit" id="signup_btn" value="Enter">
+	</form>
+
+<?php
+	if (isset($_POST['submit_btn']))
+	{
+		$name=$_POST['name'];
+		$photo_marks=$_POST['photo_marks'];
+
+		$querry="insert into club_member values ('', '$name', '$photo_marks')";
+		$querry_run= mysqli_query($con, $querry);
+	  	
+	  		if($querry_run){
+	  			echo '<script type="text/javascript">alert("Mark registered. Enter next
+	  				number")</script>';
+	  }  
+	  else{
+	  	echo '<script type= "text/javascript">alert("Error!")</script>';
+	  }
+	 }
+?>
+</center>
+</body>
+</html>
